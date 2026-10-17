@@ -40,7 +40,9 @@ export default function LeadListPage() {
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(result.error || result.message || "Failed to load leads.");
+        throw new Error(
+          result.error || result.message || "Failed to load leads."
+        );
       }
 
       setLeads(result.leads ?? []);
@@ -76,9 +78,7 @@ export default function LeadListPage() {
 
       if (!response.ok) {
         setDeleteError(
-          result.message ||
-            result.error ||
-            "Failed to delete lead."
+          result.message || result.error || "Failed to delete lead."
         );
         return;
       }
@@ -150,29 +150,29 @@ export default function LeadListPage() {
 
   return (
     <>
-      <main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 px-4 py-6 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-[1600px]">
+      <main className="min-h-screen min-h-[100dvh] overflow-x-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-slate-100 px-3 py-4 sm:px-6 sm:py-6 lg:px-8 lg:py-8">
+        <div className="mx-auto w-full min-w-0 max-w-[1600px]">
           <div className="mb-4">
             <Link
               href="/dashboard"
-              className="inline-flex items-center gap-2 rounded-lg bg-slate-600 px-4 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-700"
+              className="inline-flex max-w-full items-center gap-2 rounded-lg bg-slate-600 px-3 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-slate-700 sm:px-4"
             >
-              <span className="text-lg">←</span>
-              Back to Dashboard
+              <span className="shrink-0 text-lg">←</span>
+              <span>Back to Dashboard</span>
             </Link>
           </div>
 
-          <section className="mb-5 flex flex-col gap-5 rounded-2xl border border-white bg-white/95 p-6 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:p-8">
-            <div className="flex items-center gap-5">
-              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-blue-100 text-3xl">
+          <section className="mb-5 flex min-w-0 flex-col gap-5 rounded-2xl border border-white bg-white/95 p-4 shadow-sm sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <div className="flex min-w-0 items-center gap-3 sm:gap-5">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-100 text-2xl sm:h-16 sm:w-16 sm:text-3xl">
                 👥
               </div>
 
-              <div>
-                <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+              <div className="min-w-0">
+                <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
                   Lead List
                 </h1>
-                <p className="mt-1 text-sm text-slate-500 sm:text-base">
+                <p className="mt-1 break-words text-sm text-slate-500 sm:text-base">
                   Leads retrieved from your PostgreSQL database.
                 </p>
               </div>
@@ -180,38 +180,40 @@ export default function LeadListPage() {
 
             <Link
               href="/opportunities"
-              className="inline-flex items-center justify-center gap-3 rounded-xl bg-blue-600 px-6 py-4 font-semibold text-white shadow-sm transition hover:bg-blue-700"
+              className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 text-center text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 sm:w-auto sm:gap-3 sm:px-6 sm:py-4 sm:text-base"
             >
-              <span className="text-xl leading-none">↗</span>
+              <span className="shrink-0 text-xl leading-none">↗</span>
               Convert to Opportunity
             </Link>
           </section>
 
-          <section className="overflow-hidden rounded-2xl border border-white bg-white/95 shadow-sm">
+          <section className="min-w-0 overflow-hidden rounded-2xl border border-white bg-white/95 shadow-sm">
             {loading ? (
-              <div className="flex min-h-72 flex-col items-center justify-center gap-4 p-8">
+              <div className="flex min-h-72 flex-col items-center justify-center gap-4 p-6 sm:p-8">
                 <div className="h-10 w-10 animate-spin rounded-full border-4 border-blue-100 border-t-blue-600" />
-                <p className="text-sm font-medium text-slate-500">
+                <p className="text-center text-sm font-medium text-slate-500">
                   Loading leads...
                 </p>
               </div>
             ) : error ? (
-              <div className="p-8 text-center">
+              <div className="p-5 text-center sm:p-8">
                 <div className="mb-3 text-4xl">⚠️</div>
                 <h2 className="text-lg font-semibold text-slate-800">
                   Unable to load leads
                 </h2>
-                <p className="mt-2 text-sm text-red-600">{error}</p>
+                <p className="mt-2 break-words text-sm text-red-600">
+                  {error}
+                </p>
                 <button
                   type="button"
                   onClick={() => void fetchLeads()}
-                  className="mt-5 rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-semibold text-white hover:bg-blue-700"
+                  className="mt-5 rounded-lg bg-blue-600 px-5 py-3 text-sm font-semibold text-white hover:bg-blue-700"
                 >
                   Try Again
                 </button>
               </div>
             ) : leads.length === 0 ? (
-              <div className="flex min-h-80 flex-col items-center justify-center p-8 text-center">
+              <div className="flex min-h-80 flex-col items-center justify-center p-6 text-center sm:p-8">
                 <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-50 text-3xl">
                   👥
                 </div>
@@ -224,14 +226,14 @@ export default function LeadListPage() {
                 </p>
                 <Link
                   href="/leads"
-                  className="mt-5 rounded-lg bg-blue-600 px-5 py-3 font-semibold text-white transition hover:bg-blue-700"
+                  className="mt-5 inline-flex items-center justify-center rounded-lg bg-blue-600 px-5 py-3 text-center font-semibold text-white transition hover:bg-blue-700"
                 >
                   + Create Your First Lead
                 </Link>
               </div>
             ) : (
               <>
-                <div className="overflow-x-auto p-4 sm:p-6">
+                <div className="max-w-full overflow-x-auto overscroll-x-contain p-3 sm:p-6">
                   <table className="w-full min-w-[1350px] border-collapse text-left">
                     <thead>
                       <tr className="bg-slate-100 text-xs font-bold uppercase tracking-wide text-slate-600">
@@ -271,7 +273,7 @@ export default function LeadListPage() {
                             {lead.email}
                           </td>
                           <td className="max-w-xs px-4 py-5 text-sm text-slate-600">
-                            <div className="whitespace-normal">
+                            <div className="whitespace-normal break-words">
                               {lead.requirement}
                             </div>
                           </td>
@@ -319,7 +321,7 @@ export default function LeadListPage() {
                   </table>
                 </div>
 
-                <div className="flex flex-col gap-4 border-t border-slate-100 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
+                <div className="flex min-w-0 flex-col gap-4 border-t border-slate-100 px-4 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                   <p className="text-sm text-slate-500">
                     Showing {startIndex + 1}–
                     {Math.min(startIndex + leadsPerPage, leads.length)} of{" "}
@@ -334,7 +336,7 @@ export default function LeadListPage() {
                       }
                       disabled={currentPage === 1}
                       aria-label="Previous page"
-                      className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-lg text-slate-600 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-40"
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-lg text-slate-600 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       ‹
                     </button>
@@ -348,8 +350,10 @@ export default function LeadListPage() {
                         key={page}
                         onClick={() => setCurrentPage(page)}
                         aria-label={`Page ${page}`}
-                        aria-current={currentPage === page ? "page" : undefined}
-                        className={`h-10 min-w-10 rounded-lg px-3 text-sm font-semibold transition ${
+                        aria-current={
+                          currentPage === page ? "page" : undefined
+                        }
+                        className={`h-10 min-w-10 shrink-0 rounded-lg px-3 text-sm font-semibold transition ${
                           currentPage === page
                             ? "bg-blue-600 text-white shadow-sm"
                             : "bg-slate-100 text-slate-600 hover:bg-slate-200"
@@ -368,7 +372,7 @@ export default function LeadListPage() {
                       }
                       disabled={currentPage === totalPages}
                       aria-label="Next page"
-                      className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-lg text-slate-600 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-40"
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-lg text-slate-600 transition hover:bg-slate-200 disabled:cursor-not-allowed disabled:opacity-40"
                     >
                       ›
                     </button>
@@ -383,25 +387,25 @@ export default function LeadListPage() {
       {/* Lead Details Modal */}
       {selectedLead && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-3 sm:p-4"
           onClick={() => setSelectedLead(null)}
         >
           <section
             role="dialog"
             aria-modal="true"
             aria-labelledby="lead-details-title"
-            className="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl sm:p-8"
+            className="max-h-[90dvh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-4 shadow-2xl sm:p-8"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="mb-6 flex items-center justify-between gap-4">
-              <div>
+            <div className="mb-6 flex items-start justify-between gap-3">
+              <div className="min-w-0">
                 <h2
                   id="lead-details-title"
-                  className="text-2xl font-bold text-slate-900"
+                  className="text-xl font-bold text-slate-900 sm:text-2xl"
                 >
                   Lead Details
                 </h2>
-                <p className="mt-1 text-sm text-slate-500">
+                <p className="mt-1 break-words text-sm text-slate-500">
                   Complete information for Lead #{selectedLead.id}
                 </p>
               </div>
@@ -410,49 +414,49 @@ export default function LeadListPage() {
                 type="button"
                 onClick={() => setSelectedLead(null)}
                 aria-label="Close lead details"
-                className="rounded-lg px-3 py-2 text-xl text-slate-500 hover:bg-slate-100 hover:text-slate-800"
+                className="shrink-0 rounded-lg px-3 py-2 text-xl text-slate-500 hover:bg-slate-100 hover:text-slate-800"
               >
                 ✕
               </button>
             </div>
 
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-              <div>
+            <div className="grid min-w-0 grid-cols-1 gap-5 sm:grid-cols-2">
+              <div className="min-w-0">
                 <p className="text-sm text-slate-500">Person Name</p>
-                <p className="mt-1 font-semibold text-slate-800">
+                <p className="mt-1 break-words font-semibold text-slate-800">
                   {selectedLead.personName || "—"}
                 </p>
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-slate-500">Company Name</p>
-                <p className="mt-1 font-semibold text-slate-800">
+                <p className="mt-1 break-words font-semibold text-slate-800">
                   {selectedLead.companyName || "—"}
                 </p>
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-slate-500">Mobile Number</p>
                 <p className="mt-1 break-words font-semibold text-slate-800">
                   {selectedLead.mobile || "—"}
                 </p>
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-slate-500">Email Address</p>
                 <p className="mt-1 break-words font-semibold text-slate-800">
                   {selectedLead.email || "—"}
                 </p>
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-slate-500">Next Step</p>
-                <p className="mt-1 font-semibold text-slate-800">
+                <p className="mt-1 break-words font-semibold text-slate-800">
                   {selectedLead.nextStep || "—"}
                 </p>
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-slate-500">Lead Warmth</p>
                 <span
                   className={`mt-2 inline-flex rounded-full px-3 py-1 text-xs font-semibold ${getWarmthStyle(
@@ -463,21 +467,21 @@ export default function LeadListPage() {
                 </span>
               </div>
 
-              <div className="sm:col-span-2">
+              <div className="min-w-0 sm:col-span-2">
                 <p className="text-sm text-slate-500">Requirement</p>
                 <p className="mt-1 whitespace-pre-wrap break-words rounded-xl bg-slate-50 p-4 text-sm leading-6 text-slate-700">
                   {selectedLead.requirement || "—"}
                 </p>
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-slate-500">Created Date</p>
                 <p className="mt-1 font-semibold text-slate-800">
                   {formatDate(selectedLead.createdAt)}
                 </p>
               </div>
 
-              <div>
+              <div className="min-w-0">
                 <p className="text-sm text-slate-500">Conversion Status</p>
                 <span
                   className={`mt-2 inline-flex rounded-full px-3 py-1 text-xs font-semibold ${
@@ -493,7 +497,7 @@ export default function LeadListPage() {
 
             <div className="mt-8 border-t border-slate-100 pt-5">
               {deleteError && !confirmDeleteLead && (
-                <p role="alert" className="mb-4 text-sm text-red-600">
+                <p role="alert" className="mb-4 break-words text-sm text-red-600">
                   {deleteError}
                 </p>
               )}
@@ -505,7 +509,7 @@ export default function LeadListPage() {
                     setDeleteError("");
                     setConfirmDeleteLead(selectedLead);
                   }}
-                  className="rounded-xl border border-red-200 bg-red-50 px-5 py-3 text-sm font-semibold text-red-700 transition hover:bg-red-100"
+                  className="w-full rounded-xl border border-red-200 bg-red-50 px-5 py-3 text-sm font-semibold text-red-700 transition hover:bg-red-100 sm:w-auto"
                 >
                   Delete Lead
                 </button>
@@ -513,7 +517,7 @@ export default function LeadListPage() {
                 <button
                   type="button"
                   onClick={() => setSelectedLead(null)}
-                  className="rounded-xl bg-slate-800 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700"
+                  className="w-full rounded-xl bg-slate-800 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700 sm:w-auto"
                 >
                   Close
                 </button>
@@ -526,7 +530,7 @@ export default function LeadListPage() {
       {/* Delete Confirmation Dialog */}
       {confirmDeleteLead && (
         <div
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/60 p-4"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-900/60 p-3 sm:p-4"
           onClick={() => {
             if (!deleting) {
               setConfirmDeleteLead(null);
@@ -538,7 +542,7 @@ export default function LeadListPage() {
             role="alertdialog"
             aria-modal="true"
             aria-labelledby="delete-lead-title"
-            className="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl"
+            className="w-full max-w-md rounded-2xl bg-white p-5 shadow-2xl sm:p-6"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-red-100 text-xl font-bold text-red-700">
@@ -552,14 +556,14 @@ export default function LeadListPage() {
               Delete Lead?
             </h2>
 
-            <p className="mt-3 text-sm leading-6 text-slate-600">
+            <p className="mt-3 break-words text-sm leading-6 text-slate-600">
               Are you sure you want to delete{" "}
               <strong>{confirmDeleteLead.personName}</strong> (Lead #
               {confirmDeleteLead.id})? This action may be permanent.
             </p>
 
             {deleteError && (
-              <p role="alert" className="mt-3 text-sm text-red-600">
+              <p role="alert" className="mt-3 break-words text-sm text-red-600">
                 {deleteError}
               </p>
             )}
@@ -572,7 +576,7 @@ export default function LeadListPage() {
                   setConfirmDeleteLead(null);
                   setDeleteError("");
                 }}
-                className="rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50"
+                className="w-full rounded-xl border border-slate-200 px-4 py-3 text-sm font-semibold text-slate-700 hover:bg-slate-50 disabled:opacity-50 sm:w-auto"
               >
                 Cancel
               </button>
@@ -581,7 +585,7 @@ export default function LeadListPage() {
                 type="button"
                 disabled={deleting}
                 onClick={handleDeleteLead}
-                className="rounded-xl bg-red-600 px-4 py-3 text-sm font-semibold text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50"
+                className="w-full rounded-xl bg-red-600 px-4 py-3 text-sm font-semibold text-white hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-50 sm:w-auto"
               >
                 {deleting ? "Deleting..." : "Confirm Delete"}
               </button>

@@ -49,7 +49,7 @@ export default function LeadsPage() {
   >("");
 
   const inputClass =
-    "w-full rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100";
+    "w-full min-w-0 rounded-xl border border-slate-200 bg-white px-3 py-3 text-base text-slate-800 outline-none transition placeholder:text-sm placeholder:text-slate-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 sm:px-4 sm:text-sm sm:placeholder:text-sm";
 
   const labelClass = "mb-2 block text-sm font-semibold text-slate-700";
 
@@ -86,8 +86,6 @@ export default function LeadsPage() {
       };
     }
 
-    // If the user enters a number beginning with +,
-    // validate it using its own international country code.
     const phone = parsePhoneNumberFromString(
       input,
       input.startsWith("+") ? undefined : country
@@ -166,18 +164,18 @@ export default function LeadsPage() {
   );
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/40 to-slate-100 px-4 py-6 sm:px-8 sm:py-8">
-      <div className="mx-auto max-w-5xl">
+    <main className="min-h-screen min-h-[100dvh] overflow-x-hidden bg-gradient-to-br from-slate-50 via-blue-50/40 to-slate-100 px-3 py-5 sm:px-6 sm:py-8 lg:px-8">
+      <div className="mx-auto w-full min-w-0 max-w-5xl">
         <Link
           href="/dashboard"
-          className="mb-6 inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-600 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+          className="mb-5 inline-flex max-w-full items-center gap-2 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-sm font-semibold text-slate-600 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700 sm:mb-6 sm:px-4"
         >
           <svg
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
-            className="h-4 w-4"
+            className="h-4 w-4 shrink-0"
             aria-hidden="true"
           >
             <path
@@ -194,14 +192,15 @@ export default function LeadsPage() {
           Back to Dashboard
         </Link>
 
-        <section className="mb-7 flex items-center gap-4">
-          <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-200">
+        {/* Page heading */}
+        <section className="mb-6 flex min-w-0 items-start gap-3 sm:mb-7 sm:items-center sm:gap-4">
+          <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-200 sm:h-14 sm:w-14">
             <svg
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.7"
-              className="h-7 w-7"
+              className="h-6 w-6 sm:h-7 sm:w-7"
               aria-hidden="true"
             >
               <path
@@ -216,23 +215,24 @@ export default function LeadsPage() {
             </svg>
           </div>
 
-          <div>
-            <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
+          <div className="min-w-0">
+            <h1 className="break-words text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
               New Lead
             </h1>
-            <p className="mt-1 text-sm text-slate-500 sm:text-base">
+            <p className="mt-1 text-sm leading-6 text-slate-500 sm:text-base">
               Capture customer details and understand their requirements.
             </p>
           </div>
         </section>
 
+        {/* Lead form */}
         <form
           onSubmit={handleSubmit}
-          className="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm"
+          className="min-w-0 overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm"
         >
-          <div className="border-b border-slate-100 px-5 py-5 sm:px-8">
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+          <div className="border-b border-slate-100 px-4 py-4 sm:px-8 sm:py-5">
+            <div className="flex min-w-0 items-center gap-3">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -248,7 +248,7 @@ export default function LeadsPage() {
                   />
                 </svg>
               </div>
-              <div>
+              <div className="min-w-0">
                 <h2 className="font-bold text-slate-900">
                   Customer Information
                 </h2>
@@ -259,14 +259,15 @@ export default function LeadsPage() {
             </div>
           </div>
 
-          <div className="space-y-7 px-5 py-6 sm:px-8 sm:py-8">
-            <section>
+          <div className="space-y-6 px-4 py-5 sm:space-y-7 sm:px-8 sm:py-8">
+            {/* Contact and company details */}
+            <section className="min-w-0">
               <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-slate-400">
-                Contact & Company Details
+                Contact &amp; Company Details
               </h3>
 
-              <div className="grid gap-5 sm:grid-cols-[0.8fr_1.2fr]">
-                <div>
+              <div className="grid min-w-0 grid-cols-1 gap-5 sm:grid-cols-2">
+                <div className="min-w-0">
                   <label htmlFor="personName" className={labelClass}>
                     Person Name <span className="text-red-500">*</span>
                   </label>
@@ -282,7 +283,7 @@ export default function LeadsPage() {
                   />
                 </div>
 
-                <div>
+                <div className="min-w-0">
                   <label htmlFor="companyName" className={labelClass}>
                     Company Name <span className="text-red-500">*</span>
                   </label>
@@ -298,7 +299,7 @@ export default function LeadsPage() {
                   />
                 </div>
 
-                <div>
+                <div className="min-w-0">
                   <label htmlFor="country" className={labelClass}>
                     Country / Dialing Code{" "}
                     <span className="text-red-500">*</span>
@@ -319,7 +320,7 @@ export default function LeadsPage() {
                   </select>
                 </div>
 
-                <div>
+                <div className="min-w-0">
                   <label htmlFor="mobile" className={labelClass}>
                     Mobile Number <span className="text-red-500">*</span>
                   </label>
@@ -342,14 +343,14 @@ export default function LeadsPage() {
                   />
                   <p
                     id="mobile-help"
-                    className="mt-1.5 text-xs text-slate-500"
+                    className="mt-1.5 break-words text-xs leading-5 text-slate-500"
                   >
                     Selected code: {selectedCountry?.dial}. You may also
                     enter a complete international number beginning with +.
                   </p>
                 </div>
 
-                <div>
+                <div className="min-w-0 sm:col-span-2">
                   <label htmlFor="email" className={labelClass}>
                     Email Address <span className="text-red-500">*</span>
                   </label>
@@ -368,7 +369,8 @@ export default function LeadsPage() {
               </div>
             </section>
 
-            <section>
+            {/* Customer requirement */}
+            <section className="min-w-0">
               <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-slate-400">
                 Customer Requirement
               </h3>
@@ -388,13 +390,14 @@ export default function LeadsPage() {
               />
             </section>
 
-            <section>
+            {/* Follow-up and warmth */}
+            <section className="min-w-0">
               <h3 className="mb-4 text-xs font-bold uppercase tracking-wider text-slate-400">
-                Follow-up & Lead Warmth
+                Follow-up &amp; Lead Warmth
               </h3>
 
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div>
+              <div className="grid min-w-0 grid-cols-1 gap-5 sm:grid-cols-2">
+                <div className="min-w-0">
                   <label htmlFor="nextStep" className={labelClass}>
                     Next Step
                   </label>
@@ -412,7 +415,7 @@ export default function LeadsPage() {
                   </select>
                 </div>
 
-                <div>
+                <div className="min-w-0">
                   <label htmlFor="warmth" className={labelClass}>
                     Lead Warmth
                   </label>
@@ -431,37 +434,39 @@ export default function LeadsPage() {
               </div>
             </section>
 
+            {/* Status message */}
             {message && (
               <div
                 role={messageType === "error" ? "alert" : "status"}
-                className={`flex items-start gap-3 rounded-xl border p-4 text-sm ${
+                className={`flex min-w-0 items-start gap-3 rounded-xl border p-3 text-sm sm:p-4 ${
                   messageType === "success"
                     ? "border-emerald-200 bg-emerald-50 text-emerald-800"
                     : "border-red-200 bg-red-50 text-red-700"
                 }`}
               >
-                <span className="font-bold">
+                <span className="shrink-0 font-bold">
                   {messageType === "success" ? "✓" : "!"}
                 </span>
-                <p>{message}</p>
+                <p className="min-w-0 break-words">{message}</p>
               </div>
             )}
           </div>
 
-          <div className="flex flex-col-reverse gap-3 border-t border-slate-100 bg-slate-50/70 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-            <p className="text-xs text-slate-500">
+          {/* Form actions */}
+          <div className="flex flex-col-reverse gap-3 border-t border-slate-100 bg-slate-50/70 px-4 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-8 sm:py-5">
+            <p className="text-xs leading-5 text-slate-500">
               Please review the information before saving.
             </p>
 
             <button
               type="submit"
               disabled={saving}
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200 disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto"
             >
               {saving ? (
                 <>
                   <svg
-                    className="h-4 w-4 animate-spin"
+                    className="h-4 w-4 shrink-0 animate-spin"
                     viewBox="0 0 24 24"
                     fill="none"
                     aria-hidden="true"
@@ -490,7 +495,7 @@ export default function LeadsPage() {
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
-                    className="h-4 w-4"
+                    className="h-4 w-4 shrink-0"
                     aria-hidden="true"
                   >
                     <path
@@ -505,8 +510,8 @@ export default function LeadsPage() {
           </div>
         </form>
 
-        <p className="mt-5 text-center text-xs text-slate-400">
-          Lead Management & Opportunity Management System
+        <p className="mt-5 text-center text-xs leading-5 text-slate-400">
+          Lead Management &amp; Opportunity Management System
         </p>
       </div>
     </main>

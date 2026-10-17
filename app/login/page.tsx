@@ -37,12 +37,11 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-8">
-      <div className="w-full max-w-lg rounded-2xl border border-slate-200 bg-white p-6 shadow-xl sm:p-10">
-
+    <main className="flex min-h-screen min-h-[100dvh] items-center justify-center overflow-x-hidden bg-slate-100 px-3 py-5 sm:px-6 sm:py-8">
+      <div className="w-full min-w-0 max-w-lg rounded-2xl border border-slate-200 bg-white p-4 shadow-xl sm:p-8 md:p-10">
         {/* App Icon */}
-        <div className="mb-5 flex justify-center">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+        <div className="mb-4 flex justify-center sm:mb-5">
+          <div className="flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-blue-600 sm:h-16 sm:w-16">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="34"
@@ -54,6 +53,7 @@ export default function LoginPage() {
               strokeLinecap="round"
               strokeLinejoin="round"
               aria-hidden="true"
+              className="h-7 w-7 sm:h-8 sm:w-8"
             >
               <path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
               <circle cx="10" cy="7" r="4" />
@@ -64,29 +64,29 @@ export default function LoginPage() {
         </div>
 
         {/* Heading */}
-        <div className="mb-8 text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+        <div className="mb-6 text-center sm:mb-8">
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             Login
           </h1>
 
-          <p className="mt-3 text-slate-500">
+          <p className="mx-auto mt-3 max-w-sm text-sm leading-6 text-slate-500 sm:text-base">
             Welcome back! Please sign in to your account.
           </p>
         </div>
 
         {/* Login Form */}
-        <form onSubmit={handleLogin} className="space-y-6">
+        <form onSubmit={handleLogin} className="space-y-5 sm:space-y-6">
           {/* Email */}
-          <div>
+          <div className="min-w-0">
             <label
               htmlFor="email"
-              className="mb-2 block font-semibold text-slate-800"
+              className="mb-2 block text-sm font-semibold text-slate-800 sm:text-base"
             >
               Email Address
             </label>
 
-            <div className="flex items-center rounded-xl border border-slate-300 bg-white transition focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100">
-              <span className="pl-4 text-slate-500">
+            <div className="flex min-w-0 items-center rounded-xl border border-slate-300 bg-white transition focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100">
+              <span className="shrink-0 pl-3 text-slate-500 sm:pl-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="22"
@@ -98,6 +98,7 @@ export default function LoginPage() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   aria-hidden="true"
+                  className="h-5 w-5 sm:h-[22px] sm:w-[22px]"
                 >
                   <rect x="3" y="5" width="18" height="14" rx="2" />
                   <path d="m3 7 9 6 9-6" />
@@ -109,7 +110,7 @@ export default function LoginPage() {
                 type="email"
                 autoComplete="email"
                 placeholder="Enter your email address"
-                className="w-full rounded-xl bg-transparent p-4 text-slate-900 outline-none placeholder:text-slate-400"
+                className="min-w-0 w-full rounded-xl bg-transparent px-3 py-3.5 text-base text-slate-900 outline-none placeholder:text-sm placeholder:text-slate-400 sm:px-4 sm:py-4 sm:placeholder:text-base"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -118,16 +119,16 @@ export default function LoginPage() {
           </div>
 
           {/* Password */}
-          <div>
+          <div className="min-w-0">
             <label
               htmlFor="password"
-              className="mb-2 block font-semibold text-slate-800"
+              className="mb-2 block text-sm font-semibold text-slate-800 sm:text-base"
             >
               Password
             </label>
 
-            <div className="flex items-center rounded-xl border border-slate-300 bg-white transition focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100">
-              <span className="pl-4 text-slate-500">
+            <div className="flex min-w-0 items-center rounded-xl border border-slate-300 bg-white transition focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100">
+              <span className="shrink-0 pl-3 text-slate-500 sm:pl-4">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="22"
@@ -139,6 +140,7 @@ export default function LoginPage() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   aria-hidden="true"
+                  className="h-5 w-5 sm:h-[22px] sm:w-[22px]"
                 >
                   <rect x="3" y="11" width="18" height="11" rx="2" />
                   <path d="M7 11V7a5 5 0 0 1 10 0v4" />
@@ -150,7 +152,7 @@ export default function LoginPage() {
                 type={showPassword ? "text" : "password"}
                 autoComplete="current-password"
                 placeholder="Enter your password"
-                className="w-full min-w-0 bg-transparent p-4 text-slate-900 outline-none placeholder:text-slate-400"
+                className="min-w-0 w-full bg-transparent px-3 py-3.5 text-base text-slate-900 outline-none placeholder:text-sm placeholder:text-slate-400 sm:px-4 sm:py-4 sm:placeholder:text-base"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -160,7 +162,7 @@ export default function LoginPage() {
                 type="button"
                 onClick={() => setShowPassword((current) => !current)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
-                className="px-4 text-slate-500 transition hover:text-blue-600"
+                className="flex shrink-0 items-center justify-center px-3 py-3 text-slate-500 transition hover:text-blue-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-200 sm:px-4"
               >
                 {showPassword ? (
                   <svg
@@ -174,6 +176,7 @@ export default function LoginPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     aria-hidden="true"
+                    className="h-5 w-5 sm:h-[22px] sm:w-[22px]"
                   >
                     <path d="m3 3 18 18" />
                     <path d="M10.6 10.6a2 2 0 0 0 2.8 2.8" />
@@ -192,6 +195,7 @@ export default function LoginPage() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     aria-hidden="true"
+                    className="h-5 w-5 sm:h-[22px] sm:w-[22px]"
                   >
                     <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12Z" />
                     <circle cx="12" cy="12" r="3" />
@@ -205,7 +209,7 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-blue-600 px-4 py-4 font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200 disabled:cursor-not-allowed disabled:opacity-50"
+            className="w-full rounded-xl bg-blue-600 px-4 py-3.5 text-base font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200 disabled:cursor-not-allowed disabled:opacity-50 sm:py-4"
           >
             {loading ? "Signing in..." : "Login"}
           </button>
@@ -215,7 +219,7 @@ export default function LoginPage() {
             <p
               role="alert"
               aria-live="polite"
-              className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700"
+              className="break-words rounded-xl border border-red-200 bg-red-50 p-3 text-sm text-red-700 sm:p-4"
             >
               {message}
             </p>
@@ -223,17 +227,17 @@ export default function LoginPage() {
         </form>
 
         {/* Registration Link */}
-        <div className="mt-8">
-          <div className="flex items-center gap-4">
-            <div className="h-px flex-1 bg-slate-200" />
-            <span className="text-sm text-slate-500">New user?</span>
-            <div className="h-px flex-1 bg-slate-200" />
+        <div className="mt-6 sm:mt-8">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="h-px min-w-0 flex-1 bg-slate-200" />
+            <span className="shrink-0 text-sm text-slate-500">New user?</span>
+            <div className="h-px min-w-0 flex-1 bg-slate-200" />
           </div>
 
           <p className="mt-4 text-center">
             <Link
               href="/register"
-              className="font-semibold text-blue-600 transition hover:text-blue-800 hover:underline"
+              className="inline-block rounded font-semibold text-blue-600 transition hover:text-blue-800 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-200"
             >
               Register here
             </Link>

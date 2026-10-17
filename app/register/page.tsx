@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from "react";
@@ -28,7 +29,9 @@ export default function RegisterPage() {
 
       if (result.error) {
         setIsError(true);
-        setMessage(result.error.message ?? "Registration failed. Please try again.");
+        setMessage(
+          result.error.message ?? "Registration failed. Please try again."
+        );
       } else {
         setMessage("Registration successful! You can now log in.");
         setName("");
@@ -44,18 +47,18 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 px-4 py-10">
-      <div className="w-full max-w-md">
+    <main className="flex min-h-screen min-h-[100dvh] items-center justify-center overflow-x-hidden bg-gradient-to-br from-slate-100 via-blue-50 to-indigo-100 px-3 py-6 sm:px-6 sm:py-10">
+      <div className="w-full min-w-0 max-w-md">
         {/* Brand */}
-        <div className="mb-7 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-200">
+        <div className="mb-5 text-center sm:mb-7">
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-200 sm:h-16 sm:w-16">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
               strokeWidth="1.8"
-              className="h-8 w-8"
+              className="h-7 w-7 sm:h-8 sm:w-8"
               aria-hidden="true"
             >
               <path
@@ -66,29 +69,29 @@ export default function RegisterPage() {
             </svg>
           </div>
 
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900">
+          <h1 className="text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl">
             Create an Account
           </h1>
 
-          <p className="mt-2 text-sm text-slate-500">
+          <p className="mx-auto mt-2 max-w-sm text-sm leading-6 text-slate-500 sm:text-sm">
             Join the Lead &amp; Opportunity Management System
           </p>
         </div>
 
         {/* Registration form */}
-        <div className="rounded-3xl border border-white bg-white p-6 shadow-xl shadow-slate-200/70 sm:p-8">
-          <div className="mb-6">
-            <h2 className="text-xl font-semibold text-slate-800">
+        <div className="min-w-0 rounded-2xl border border-white bg-white p-4 shadow-xl shadow-slate-200/70 sm:rounded-3xl sm:p-8">
+          <div className="mb-5 sm:mb-6">
+            <h2 className="text-lg font-semibold text-slate-800 sm:text-xl">
               Get started
             </h2>
-            <p className="mt-1 text-sm text-slate-500">
+            <p className="mt-1 text-sm leading-5 text-slate-500">
               Enter your details to create your account.
             </p>
           </div>
 
           <form onSubmit={handleRegister} className="space-y-5">
             {/* Full name */}
-            <div>
+            <div className="min-w-0">
               <label
                 htmlFor="name"
                 className="mb-2 block text-sm font-medium text-slate-700"
@@ -119,7 +122,7 @@ export default function RegisterPage() {
                   type="text"
                   autoComplete="name"
                   placeholder="Enter your full name"
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                  className="w-full min-w-0 rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-3 text-base text-slate-800 outline-none transition placeholder:text-sm placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100 sm:pr-4"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -129,7 +132,7 @@ export default function RegisterPage() {
             </div>
 
             {/* Email */}
-            <div>
+            <div className="min-w-0">
               <label
                 htmlFor="email"
                 className="mb-2 block text-sm font-medium text-slate-700"
@@ -157,7 +160,7 @@ export default function RegisterPage() {
                   type="email"
                   autoComplete="email"
                   placeholder="you@example.com"
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-4 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                  className="w-full min-w-0 rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-3 text-base text-slate-800 outline-none transition placeholder:text-sm placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100 sm:pr-4"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -166,7 +169,7 @@ export default function RegisterPage() {
             </div>
 
             {/* Password */}
-            <div>
+            <div className="min-w-0">
               <label
                 htmlFor="password"
                 className="mb-2 block text-sm font-medium text-slate-700"
@@ -199,7 +202,7 @@ export default function RegisterPage() {
                   autoComplete="new-password"
                   placeholder="Create a password"
                   minLength={8}
-                  className="w-full rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-20 text-sm text-slate-800 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
+                  className="w-full min-w-0 rounded-xl border border-slate-200 bg-slate-50 py-3 pl-11 pr-[4.5rem] text-base text-slate-800 outline-none transition placeholder:text-sm placeholder:text-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-100"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
@@ -207,15 +210,15 @@ export default function RegisterPage() {
 
                 <button
                   type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-semibold text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300"
+                  onClick={() => setShowPassword((current) => !current)}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 rounded px-2 py-2 text-xs font-semibold text-blue-600 hover:text-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300 sm:right-3"
                   aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? "Hide" : "Show"}
                 </button>
               </div>
 
-              <p className="mt-2 text-xs text-slate-500">
+              <p className="mt-2 text-xs leading-5 text-slate-500">
                 Use at least 8 characters.
               </p>
             </div>
@@ -225,7 +228,7 @@ export default function RegisterPage() {
               <div
                 role="status"
                 aria-live="polite"
-                className={`rounded-xl border px-4 py-3 text-sm ${
+                className={`break-words rounded-xl border px-3 py-3 text-sm sm:px-4 ${
                   isError
                     ? "border-red-200 bg-red-50 text-red-700"
                     : "border-green-200 bg-green-50 text-green-700"
@@ -236,7 +239,7 @@ export default function RegisterPage() {
                   <div className="mt-2">
                     <Link
                       href="/login"
-                      className="font-semibold underline underline-offset-2"
+                      className="inline-block rounded font-semibold underline underline-offset-2 focus:outline-none focus:ring-2 focus:ring-blue-300"
                     >
                       Go to login
                     </Link>
@@ -249,12 +252,12 @@ export default function RegisterPage() {
             <button
               type="submit"
               disabled={loading}
-              className="flex w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-3 font-semibold text-white shadow-md shadow-blue-200 transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200 disabled:cursor-not-allowed disabled:opacity-60"
+              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-blue-600 px-3 py-3 text-sm font-semibold text-white shadow-md shadow-blue-200 transition hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-200 disabled:cursor-not-allowed disabled:opacity-60 sm:text-base"
             >
               {loading ? (
                 <>
                   <svg
-                    className="h-5 w-5 animate-spin"
+                    className="h-5 w-5 shrink-0 animate-spin"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -284,11 +287,11 @@ export default function RegisterPage() {
 
           {/* Login link */}
           <div className="mt-6 border-t border-slate-100 pt-5 text-center">
-            <p className="text-sm text-slate-600">
+            <p className="text-sm leading-6 text-slate-600">
               Already have an account?{" "}
               <Link
                 href="/login"
-                className="font-semibold text-blue-600 hover:text-blue-800 hover:underline"
+                className="inline-block rounded font-semibold text-blue-600 hover:text-blue-800 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-200"
               >
                 Log in
               </Link>
@@ -296,7 +299,7 @@ export default function RegisterPage() {
           </div>
         </div>
 
-        <p className="mt-6 text-center text-xs text-slate-400">
+        <p className="mt-5 text-center text-xs leading-5 text-slate-400 sm:mt-6">
           Lead &amp; Opportunity Management System
         </p>
       </div>
