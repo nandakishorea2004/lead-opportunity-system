@@ -26,9 +26,10 @@ export default function LoginPage() {
       if (result.error) {
         setMessage(result.error.message ?? "Login failed.");
       } else {
-        window.location.href = "/";
+        window.location.href = "/dashboard";
       }
-    } catch {
+    } catch (error) {
+      console.error("Login error:", error);
       setMessage("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
