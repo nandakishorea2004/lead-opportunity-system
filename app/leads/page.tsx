@@ -169,7 +169,7 @@ export default function LeadsPage() {
     <main className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/40 to-slate-100 px-4 py-6 sm:px-8 sm:py-8">
       <div className="mx-auto max-w-5xl">
         <Link
-          href="/"
+          href="/dashboard"
           className="mb-6 inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-600 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
         >
           <svg
